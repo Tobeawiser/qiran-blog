@@ -1,6 +1,7 @@
 package com.qiran.controller;
 
-import com.qiran.entity.User;
+import com.qiran.base.BaseResponse;
+import com.qiran.entity.Article;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ public class ArticleControllerTest {
 
     @Test
     public void list() {
-        User list = articleController.list();
-        Assert.assertNotNull(list);
-        System.out.println(list);
+        BaseResponse baseResponse = articleController.listByArticle(null, null);
+        Assert.assertNotNull(baseResponse);
+        System.out.println(baseResponse);
     }
 }

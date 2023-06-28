@@ -1,6 +1,10 @@
 package com.qiran.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qiran.base.BaseResponse;
+import com.qiran.entity.Article;
 import com.qiran.entity.User;
 import com.qiran.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +24,9 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/list")
-    public User list() {
-        List<User> list = articleService.list(null);
-        return list.get(0);
+    public BaseResponse listByArticle(Page page, Article article) {
+        IPage<Article> iPage = articleService.listByArticle(page, article);
+        return BaseResponse.success(iPage);
     }
 
 
