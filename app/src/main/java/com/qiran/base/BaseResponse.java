@@ -3,8 +3,6 @@ package com.qiran.base;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qiran.constant.BaseStatusEnum;
 
-import java.util.List;
-
 public class BaseResponse {
 
     private IPage iPage;
@@ -26,4 +24,17 @@ public class BaseResponse {
     public static BaseResponse fail(IPage iPage) {
         return new BaseResponse(iPage, BaseStatusEnum.FAIL.getCode(), BaseStatusEnum.FAIL.getMsg());
     }
+
+    public IPage getiPage() {
+        return iPage;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
 }

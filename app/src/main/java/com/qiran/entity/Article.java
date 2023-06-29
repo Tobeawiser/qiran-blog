@@ -1,14 +1,14 @@
 package com.qiran.entity;
 
-import java.time.LocalDateTime;
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -27,6 +27,8 @@ import lombok.ToString;
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private String id;
 
     private String title;
 
