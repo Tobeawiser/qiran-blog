@@ -10,7 +10,23 @@
     <div style="height:530px;text-align:center">
       <button @click="intelligRoad('compute')">技术之路</button>
       <button @click="intelligRoad('life')">文章生活</button>
+      <br/>
+      <Card style="width:100%">
+        <List border footer="Footer" header="Header" size="large">
+          <div v-for="item in listItem">
+            <ListItem>{{ item.title }}</ListItem>
+          </div>
+        </List>
+
+        <Page
+            :model-value="this.page.current"
+            :page-size="this.page.size"
+            :total="this.page.total"
+            next-text="下一页"
+            prev-text="上一页"/>
+      </Card>
     </div>
+
   </div>
   </body>
 </template>
@@ -21,7 +37,14 @@ import axios from 'axios'
 
 export default {
   data() {
-
+    return {
+      listItem: [],
+      page: {
+        total: 0,
+        size: 0,
+        current: 0
+      }
+    }
   },
   methods: {
     intelligRoad(param) {
@@ -35,8 +58,14 @@ export default {
       });
       axiosObj.get('/article/list')
           .then(res => {
-            res.data
-            debugger
+            let iPage = res.data.iPage
+            if (res.data && iPage.records.length > 0) {
+              this.listItem = iPage.records
+              this.page.total = iPage
+              this.page.size = iPage
+              this.page.current = iPage
+            }
+
           })
     }
   }
@@ -48,15 +77,21 @@ export default {
   background-color: aquamarine;
   width: 400px;
   height: 200px;
-  display: flex; /*����Ϊ���Ժ�������*/
+  display: flex;
 }
 
 .logo {
   width: 100px;
   height: auto;
-  aspect-ratio: 1/1; /*�̶����߱�*/
-  display: block; /*����Ϊ�鼶Ԫ��*/
+  aspect-ratio: 1/1;
+  display: block;
   margin: auto;
+}
+
+.rate-demo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 </style>
