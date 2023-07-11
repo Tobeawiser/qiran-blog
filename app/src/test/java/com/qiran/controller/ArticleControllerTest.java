@@ -21,7 +21,10 @@ public class ArticleControllerTest {
 
     @Test
     public void list() {
-        BaseResponse baseResponse = articleController.listByArticle(new Page(), null);
+        Page page = new Page();
+        page.setSize(10);
+        page.setCurrent(2L);
+        BaseResponse baseResponse = articleController.listByArticle(page, null);
         IPage iPage = baseResponse.getiPage();
         int size = iPage.getRecords().size();
         System.out.println("records-------------->size:" + size);
